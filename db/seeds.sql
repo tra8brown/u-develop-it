@@ -1,3 +1,4 @@
+USE candidates_db;
 
 INSERT INTO parties (name, description)
 VALUES
