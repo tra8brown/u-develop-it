@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 const inputCheck = require('./utils/inputCheck');
 
 //express middleware
-app.use(express.urlencoded({ extrended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //connect to database
@@ -166,6 +166,13 @@ app.post('/api/candidate', ({ body }, res) => {
 
 // Update a candidate's party
 app.put('/api/candidate/:id', (req, res) => {
+    //forces any PUT req to include a party_id property
+    const errors = inputCheck(req.body, 'party_id');
+
+    if (errors) {
+        res.status(400).json({ error: errors });
+        return;
+    }
     const sql = `UPDATE candidates SET party_id = ? 
                  WHERE id = ?`;
     const params = [req.body.party_id, req.params.id];
