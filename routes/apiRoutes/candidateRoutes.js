@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../db/connection');
-const inputCheck = require('../../utils/inputCheck');
+//const inputCheck = require('../../utils/inputCheck');
 
 //originally app.get('/api/candidates') //get all candidates
 router.get('/candidates', (req, res) => {
@@ -65,6 +65,7 @@ router.post('/candidate', ({ body }, res) => {
         });
     });
 });
+
 //orginally app.put('/api/candidate/:id') //update a candidates party
 router.put('/candidate/:id', (req, res) => {
     //forces any PUT req to include a party_id property
